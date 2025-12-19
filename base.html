@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Secure Registration{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 2rem;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .field {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: .25rem;
+        }
+        input[type=text],
+        input[type=email],
+        input[type=password],
+        textarea {
+            width: 100%;
+            padding: .6rem;
+            border: 1px solid black;
+            border-radius: .5rem;
+        }
+        .errors {
+            color: red;
+            margin: .25rem 0 0 0;
+        }
+        .flash {
+            padding: .75rem 1rem;
+            border-radius: .5rem;
+            margin-bottom: 1rem;
+        }
+        .flash.success {
+            background: white;
+            border: 3px solid green;
+        }
+        .flash.error {
+            background: white;
+            border: 3px solid red;
+        }
+        .bio-preview {
+            border: 1px solid black;
+            border-radius: .5rem;
+            padding: 1rem;
+            background: white;
+        }
+
+        input[type=submit],
+        button[type=submit],
+        .btn {
+            background: orange;
+            color: white;
+            padding: .6rem 1rem;
+            border: 1px solid darkorange;
+            border-radius: .5rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        input[type=submit]:hover,
+        button[type=submit]:hover,
+        .btn:hover {
+            background: darkorange;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+ {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>
